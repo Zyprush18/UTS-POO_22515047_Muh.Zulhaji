@@ -72,8 +72,7 @@ public class Restoran {
             System.out.println("Antrean kosong.");
             return;
         }
-        // Note: AntreanPesanan doesn't expose internal array, so we can't iterate directly
-        // This would need a getAll() method in AntreanPesanan or we show size only
+       
         System.out.println("Jumlah pesanan menunggu: " + antreanPesanan.size());
         System.out.println("Pesanan depan: " + antreanPesanan.front().getIdPesanan());
     }
