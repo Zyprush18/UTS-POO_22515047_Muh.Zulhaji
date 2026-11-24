@@ -43,27 +43,25 @@ public class Main {
     }
 
     private static void tambahMenu() {
-        String id = bacaTeks("ID Menu       : ");
         String nama = bacaTeks("Nama Menu     : ");
         String kategori = bacaTeks("Kategori      : ");
         double harga = bacaDouble("Harga         : ");
-        Menu menu = new Menu(id, nama, kategori, harga);
+        Menu menu = new Menu(null, nama, kategori, harga);
         if (menu.validasiData()) {
             restoran.tambahMenu(menu);
-            System.out.println("Menu berhasil ditambahkan.");
+            System.out.println("Menu berhasil ditambahkan. ID: " + menu.getIdMenu());
         } else {
             System.out.println("Data menu tidak valid (nama kosong / harga harus > 0).");
         }
     }
 
     private static void tambahPelanggan() {
-        String id = bacaTeks("ID Pelanggan  : ");
         String nama = bacaTeks("Nama          : ");
         String telepon = bacaTeks("No. Telepon   : ");
-        Pelanggan pelanggan = new Pelanggan(id, nama, telepon);
+        Pelanggan pelanggan = new Pelanggan(null, nama, telepon);
         if (pelanggan.validasiData()) {
             restoran.tambahPelanggan(pelanggan);
-            System.out.println("Pelanggan berhasil didaftarkan.");
+            System.out.println("Pelanggan berhasil didaftarkan. ID: " + pelanggan.getIdPelanggan());
         } else {
             System.out.println("Data pelanggan tidak valid (nama kosong / telepon harus angka).");
         }
@@ -91,8 +89,7 @@ public class Main {
             return;
         }
 
-        String idPesanan = bacaTeks("ID Pesanan    : ");
-        Pesanan pesanan = new Pesanan(idPesanan, pelanggans.get(idx));
+        Pesanan pesanan = new Pesanan(null, pelanggans.get(idx));
 
         while (true) {
             restoran.tampilkanMenu();
@@ -118,7 +115,7 @@ public class Main {
             return;
         }
         restoran.masukkanAntrean(pesanan);
-        System.out.println("Pesanan " + idPesanan + " masuk antrean. Total: Rp "
+        System.out.println("Pesanan " + pesanan.getIdPesanan() + " masuk antrean. Total: Rp "
                 + String.format("%,.0f", pesanan.hitungTotal()));
     }
 

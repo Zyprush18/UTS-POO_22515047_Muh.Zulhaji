@@ -1,11 +1,14 @@
 public class Menu {
+    private static int counter = 1;
+
     private String idMenu;
     private String namaMenu;
     private String kategori;
     private double harga;
 
     public Menu(String idMenu, String namaMenu, String kategori, double harga) {
-        this.idMenu = idMenu;
+        this.idMenu = (idMenu == null || idMenu.trim().isEmpty())
+                ? String.format("M%03d", counter++) : idMenu;
         this.namaMenu = namaMenu;
         this.kategori = kategori;
         this.harga = harga;

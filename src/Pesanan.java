@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 
 public class Pesanan {
+    private static int counter = 1;
+
     private String idPesanan;
     private Pelanggan pelanggan;
     private ArrayList<DetailPesanan> daftarDetail;
 
     public Pesanan(String idPesanan, Pelanggan pelanggan) {
-        this.idPesanan = idPesanan;
+        this.idPesanan = (idPesanan == null || idPesanan.trim().isEmpty())
+                ? String.format("PS%03d", counter++) : idPesanan;
         this.pelanggan = pelanggan;
         this.daftarDetail = new ArrayList<>();
     }

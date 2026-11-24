@@ -1,10 +1,13 @@
 public class Pelanggan {
+    private static int counter = 1;
+
     private String idPelanggan;
     private String nama;
     private String nomorTelepon;
 
     public Pelanggan(String idPelanggan, String nama, String nomorTelepon) {
-        this.idPelanggan = idPelanggan;
+        this.idPelanggan = (idPelanggan == null || idPelanggan.trim().isEmpty())
+                ? String.format("P%03d", counter++) : idPelanggan;
         this.nama = nama;
         this.nomorTelepon = nomorTelepon;
     }
