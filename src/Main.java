@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static Restoran restoran = new Restoran("Restoran Nusantara", 10);
+    private static Restoran restoran = new Restoran("Restoran Nusantara");
 
     public static void main(String[] args) {
         System.out.println("Selamat datang di " + restoran.getNamaRestoran());
@@ -68,6 +68,13 @@ public class Main {
     }
 
     private static void buatPesanan() {
+        AntreanPesanan antrean = restoran.getAntreanPesanan();
+        if (antrean.isFull()) {
+            System.out.println("Antrean penuh (" + antrean.getKapasitas() + "/"
+                    + antrean.getKapasitas() + "). Proses pesanan dulu sebelum menambah.");
+            return;
+        }
+
         ArrayList<Pelanggan> pelanggans = restoran.getDaftarPelanggan();
         if (pelanggans.isEmpty()) {
             System.out.println("Belum ada pelanggan. Daftarkan pelanggan dulu.");
@@ -114,9 +121,12 @@ public class Main {
             System.out.println("Pesanan kosong / tidak valid. Dibatalkan.");
             return;
         }
-        restoran.masukkanAntrean(pesanan);
-        System.out.println("Pesanan " + pesanan.getIdPesanan() + " masuk antrean. Total: Rp "
-                + String.format("%,.0f", pesanan.hitungTotal()));
+        if (restoran.masukkanAntrean(pesanan)) {
+            System.out.println("Pesanan " + pesanan.getIdPesanan() + " masuk antrean. Total: Rp "
+                    + String.format("%,.0f", pesanan.hitungTotal()));
+        } else {
+            System.out.println("Gagal menambah pesanan: antrean penuh atau data tidak valid.");
+        }
     }
 
     private static void prosesPesanan() {

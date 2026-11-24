@@ -6,11 +6,11 @@ public class Restoran {
     private ArrayList<Pelanggan> daftarPelanggan;
     private AntreanPesanan antreanPesanan;
 
-    public Restoran(String namaRestoran, int kapasitasAntrean) {
+    public Restoran(String namaRestoran) {
         this.namaRestoran = namaRestoran;
         this.daftarMenu = new ArrayList<>();
         this.daftarPelanggan = new ArrayList<>();
-        this.antreanPesanan = new AntreanPesanan(kapasitasAntrean);
+        this.antreanPesanan = new AntreanPesanan(1);
     }
 
     public void tambahMenu(Menu menu) {
@@ -56,10 +56,12 @@ public class Restoran {
         return pesanan;
     }
 
-    public void masukkanAntrean(Pesanan pesanan) {
-        if (pesanan != null && pesanan.validasiPesanan()) {
-            antreanPesanan.enqueue(pesanan);
+    public boolean masukkanAntrean(Pesanan pesanan) {
+        if (pesanan == null || !pesanan.validasiPesanan() || antreanPesanan.isFull()) {
+            return false;
         }
+        antreanPesanan.enqueue(pesanan);
+        return true;
     }
 
     public Pesanan prosesPesanan() {
