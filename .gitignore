@@ -1,0 +1,35 @@
+# Compiled class files
+*.class
+
+# Compilation output folders
+out/
+target/
+build/
+bin/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Database files (optional - uncomment if needed)
+# *.db
+# *.sqlite
+# *.sqlite3
